@@ -36,4 +36,4 @@ for filename in os.listdir('./modules'):
     if filename.endswith('.py') and filename != "__init__.py":
         sdpbot.load_extension(f'modules.{filename[:-3]}')
 
-sdpbot.run(cfg.discord_api_key)
+sdpbot.run(cfg.data["discord_api_key"])

@@ -6,12 +6,12 @@ import random
 class ImageSearch():
     def __init__(self):
         self.service = build("customsearch", "v1",
-               developerKey=cfg.google_dev_api)
+               developerKey=cfg.data["google_api"])
 
     def search(self, entry):
         res = self.service.cse().list(
             q=entry,
-            cx=cfg.google_cse,
+            cx=cfg.data["google_cse"],
             searchType='image',
             num=10,
             start = random.choice(range(1,10)) * 10,
