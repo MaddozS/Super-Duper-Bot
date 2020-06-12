@@ -1,2 +1,2 @@
-discordpy
+discord.py
 google-api-python-client
