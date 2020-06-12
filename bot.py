@@ -1,34 +1,39 @@
-import discord, random, aiohttp, asyncio, modules
-from utils.image_search import img
+import discord
 from config.config import cfg
-from utils import searches
 from discord.ext import commands
+from discord.ext.commands import has_permissions
+import os
 
-client = commands.Bot(command_prefix='!')
+sdpbot = commands.Bot(command_prefix='!!')
 
+@sdpbot.command()
+@has_permissions(administrator=True)
+async def load(ctx, extension):
+    sdpbot.load_extension(f"modules.{extension.lower()}")
+    await ctx.send(f"{ctx.message.author.mention} ha activado el módulo {extension.lower()}")
+    print(f"Module {extension} is loaded!")
 
-@client.event
-async def on_ready():
-    print("Todo funcionando! ;)")
+@sdpbot.command()
+@has_permissions(administrator=True)
+async def unload(ctx, extension):
+    sdpbot.unload_extension(f"modules.{extension.lower()}")
+    await ctx.send(f"{ctx.message.author.mention} ha desactivado el módulo {extension.lower()}")
+    print(f"Module {extension} is unloaded!")
 
-@client.command(aliases=['chemopelon','pelon'])
-async def chemo(ctx):
-    async with ctx.channel.typing():
-        # Search from one of the possible options
-        query = random.choice(searches.bald_search)
+@load.error
+async def load_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send(f"Oye {ctx.message.author.mention}, no seas pendejo no tienes permisos, ¡no lo intentes de nuevo! <:prianbot:709840223856623646>")
+        raise commands.MissingPermissions(["Administrator"])
 
-        # getting the title and the link of the image
-        imgTitle, imgLink = img.rand_image(query)
-        
-        print(f"{imgTitle}:\n\t{imgLink}")
+@unload.error
+async def unload_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send(f"Oye {ctx.message.author.mention}, no seas pendejo no tienes permisos, ¡no lo intentes de nuevo! <:prianbot:709840223856623646>")
+        raise commands.MissingPermissions(["Administrator"])
 
-        embed = discord.Embed(title="Chemo Pelon")
-        embed.set_image(url=imgLink)
-        embed.set_footer(text="Para todos su primera paja, para mi la de todos los días ❤")
+for filename in os.listdir('./modules'):
+    if filename.endswith('.py') and filename != "__init__.py":
+        sdpbot.load_extension(f'modules.{filename[:-3]}')
 
-        await asyncio.sleep(1)
-
-        await ctx.send(embed = embed)
-
-
-client.run(cfg.discord_api_key)
+sdpbot.run(cfg.discord_api_key)
