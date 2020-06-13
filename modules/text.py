@@ -20,5 +20,12 @@ class Text(commands.Cog):
 
             await ctx.send(new_txt)
 
+    @commands.command()
+    async def say(self, ctx, *, txt: str):
+        async with ctx.channel.typing():
+            await asyncio.sleep(1)
+            
+            await ctx.send(txt)
+
 def setup(client):
     client.add_cog(Text(client))
