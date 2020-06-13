@@ -12,9 +12,8 @@ class Text(commands.Cog):
     @commands.command(aliases=['mocking'])
     async def spongebob(self, ctx, *, txt: str):
         async with ctx.channel.typing():
-            new_txt = ""
-            for c in txt:
-                new_txt += c.upper() if random.random() < 0.5 else c.lower()
+            new_txt = ''.join(map(
+                lambda c: c.upper() if random.random() < 0.5 else c.lower(), txt))
 
             print(new_txt)
             await asyncio.sleep(1)
