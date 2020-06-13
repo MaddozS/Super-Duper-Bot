@@ -11,11 +11,13 @@ class Config():
         self.data["google_api"]  = os.environ["GOOGLE_DEV_API"]
         self.data["google_cse"]      = os.environ["GOOGLE_CSE"]
         self.data["discord_api_key"] = os.environ["DISCORD_API_KEY_DEV"]
+        self.data["command_prefix"] = "dev!"
 
     def __deploy_config(self):
         self.data["google_api"]  = os.environ["GOOGLE_DEPLOY_API"]
         self.data["google_cse"]      = os.environ["GOOGLE_CSE"]
         self.data["discord_api_key"] = os.environ["DISCORD_API_KEY_DEPLOY"]
+        self.data["command_prefix"] = "sd!"
 
     def __setup_config(self, environ):
         config_type = {

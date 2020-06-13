@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import has_permissions
 import os
 
-sdpbot = commands.Bot(command_prefix='!!')
+sdpbot = commands.Bot(command_prefix=cfg.data["command_prefix"])
 
 @sdpbot.command()
 @has_permissions(administrator=True)
