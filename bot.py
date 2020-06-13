@@ -16,7 +16,9 @@ class SuperDuperBot(commands.Bot):
             if filename.endswith('.py') and filename != "__init__.py":
                 try:
                     self.load_extension(f'modules.{filename[:-3]}')
+                    print(f"Module {filename} loaded!")
                 except Exception as e:
+                    print(e)
                     print(f"Module {filename} couldn't load!")
                 
         print("-------------------BOT STARTED-------------------")
