@@ -2,6 +2,7 @@ import discord, asyncio, random
 from utils import searches
 # from utils.image_search import img
 from discord.ext import commands
+from connection.mongodb import db
 
 class JoJo(commands.Cog):
     def __init__(self, client):
@@ -14,9 +15,12 @@ class JoJo(commands.Cog):
     @commands.command(aliases=['jojostand'])
     async def stand(self, ctx):
         async with ctx.channel.typing():
-            stand_result = random.choice(list(searches.stands.keys()))
-            img_stand = random.choice(searches.stands[stand_result])
+            stands = db.jojo.find()[0]['stands']
+
+            stand_result = random.choice(list(stands.keys()))
+            img_stand = random.choice(stands[stand_result])
             print(stand_result)
+            
             embed = discord.Embed()
             embed.add_field(name="Your Stand!", value=f"**{ctx.message.author.mention}**, tu Stand es **{stand_result}**", inline=True)
             embed.set_image(url=img_stand)
