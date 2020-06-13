@@ -15,8 +15,7 @@ stands = {
     "Magician's Red": [
         "https://static.jojowiki.com/images/5/50/CrossfireHurricane.gif",
         "https://static.jojowiki.com/images/5/5b/Crossfire_special.gif",
-        "https://static.jojowiki.com/images/6/68/Magician_red_detector.gif",
-
+        "https://static.jojowiki.com/images/6/68/Magician_red_detector.gif"
     ],
     "Hermit Purple" : [
         "https://static.jojowiki.com/images/c/cf/Hermit_purple.gif",
