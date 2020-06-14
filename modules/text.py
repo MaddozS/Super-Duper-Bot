@@ -15,16 +15,18 @@ class Text(commands.Cog):
             new_txt = ''.join(map(
                 lambda c: c.upper() if random.random() < 0.5 else c.lower(), txt))
 
-            print(new_txt)
-            await asyncio.sleep(1)
+            await ctx.message.delete()
+            await asyncio.sleep(0.01)
 
             await ctx.send(new_txt)
 
     @commands.command()
     async def say(self, ctx, *, txt: str):
-        async with ctx.channel.typing():
-            await asyncio.sleep(1)
-            
+
+        if txt == "":
+            await ctx.send(f'{ctx.message.author.mention} ¡PERO PONLE TEXTO PELOTUDO!')
+        else:
+            await ctx.message.delete()
             await ctx.send(txt)
 
 def setup(client):
