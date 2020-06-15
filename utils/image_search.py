@@ -21,7 +21,7 @@ class ImageSearch():
         return res
 
     def rand_search_image_google(self, entry):
-        res = self.search(entry)
+        res = self.search_images_google(entry)
 
         rndImg = random.choice(res['items'])
         imgTitle, imgLink = rndImg['title'], rndImg['link']
