@@ -46,7 +46,7 @@ class Memes(commands.Cog):
 
                 await ctx.send(embed=embed)
             else:
-                await ctx.send("No se pudo encontrar ni una cuserd!")
+                await ctx.send("No se pudo encontrar ni una cursed!")
 
 def setup(client):
     client.add_cog(Memes(client))
