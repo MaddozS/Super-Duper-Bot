@@ -19,7 +19,7 @@ class CringeLatam(commands.Cog):
             query = random.choice(searches.bald_search)
 
             # getting the title and the link of the image
-            imgTitle, imgLink = img.rand_image(query)
+            imgTitle, imgLink = img.search_images_google(query)
             
             print(f"{imgTitle}:\n\t{imgLink}")
 

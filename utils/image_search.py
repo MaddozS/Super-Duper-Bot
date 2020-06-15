@@ -8,7 +8,7 @@ class ImageSearch():
         self.service = build("customsearch", "v1",
                developerKey=cfg.data["google_api"])
 
-    def search(self, entry):
+    def search_images_google(self, entry):
         res = self.service.cse().list(
             q=entry,
             cx=cfg.data["google_cse"],
@@ -20,7 +20,7 @@ class ImageSearch():
 
         return res
 
-    def rand_image(self, entry):
+    def rand_search_image_google(self, entry):
         res = self.search(entry)
 
         rndImg = random.choice(res['items'])
